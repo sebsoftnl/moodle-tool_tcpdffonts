@@ -1,0 +1,124 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template tool_tcpdffonts/fontlist
+
+    This template will render TCPDF Fonts information.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * hasfonts whether or not we have fonts
+    * fonts fonts list
+
+    Example context (json):
+    {
+        "groupedbyfamily": false,
+        "hasfonts": true,
+        "fonts": [
+            {
+                "fontname": "fontname",
+                "type": "",
+                "file": "/home/..../fontname.php",
+                "ctg": "/home/..../fontname.ctg.z",
+                "path": "/home/..../",
+                "style": "IB",
+                "iscore": true,
+                "name": "name",
+                "family": "fontfamily",
+                "actions": {
+                    "delete": {
+                        "action": "<a href=\".....\"></a>"
+                    },
+                    "edit": {
+                        "action": "<a href=\".....\"></a>"
+                    },
+                    "download": {
+                        "action": "<a href=\".....\"></a>"
+                    },
+                    "preview": {
+                        "action": "<a href=\".....\"></a>"
+                    }
+                }
+            }
+        ]
+    }
+}}
+
+<div class="tool_tcpdffonts-itemlist" data-region="fontlist">
+{{#hasfonts}}
+    {{#groupedbyfamily}}
+    <table class="generaltable">
+        <thead>
+            <tr>
+                <th>{{#str}}family, tool_tcpdffonts{{/str}}</th>
+                <th>{{#str}}styles, tool_tcpdffonts{{/str}}</th>
+                <th>{{#str}}type, tool_tcpdffonts{{/str}}</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#fonts}}
+            <tr>
+                <td class="font-item-family">{{{family}}}</td>
+                <td class="font-item-styles">{{{styles}}}</td>
+                <td class="font-item-type">{{#iscore}}CORE{{/iscore}}{{#iscorerestricted}} RESTRICTED{{/iscorerestricted}}{{^iscore}}CUSTOM{{/iscore}}</td>
+                <td class="font-item-actions">
+                    {{#actions.delete}}{{{action}}}{{/actions.delete}}
+                    {{#actions.download}}{{{action}}}{{/actions.download}}
+                    {{#actions.preview}}{{{action}}}{{/actions.preview}}
+                </td>
+            </tr>
+            {{/fonts}}
+        </tbody>
+    </table>
+    {{/groupedbyfamily}}
+    {{^groupedbyfamily}}
+    <table class="generaltable">
+        <thead>
+            <tr>
+                <th>{{#str}}name{{/str}}</th>
+                <th>{{#str}}family, tool_tcpdffonts{{/str}}</th>
+                <th>{{#str}}type, tool_tcpdffonts{{/str}}</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#fonts}}
+            <tr>
+                <td class="font-item-name">{{{name}}}</td>
+                <td class="font-item-family">{{{family}}}</td>
+                <td class="font-item-type">{{#iscore}}CORE{{/iscore}}{{#iscorerestricted}} RESTRICTED{{/iscorerestricted}}{{^iscore}}CUSTOM{{/iscore}}</td>
+                <td class="font-item-actions">
+                    {{#actions.delete}}{{{action}}}{{/actions.delete}}
+                    {{#actions.download}}{{{action}}}{{/actions.download}}
+                    {{#actions.preview}}{{{action}}}{{/actions.preview}}
+                </td>
+            </tr>
+            {{/fonts}}
+        </tbody>
+    </table>
+    {{/groupedbyfamily}}
+{{/hasfonts}}
+{{^hasfonts}}
+    {{#str}}fonts:none-found, tool_tcpdffonts{{/str}}
+{{/hasfonts}}
+</div>

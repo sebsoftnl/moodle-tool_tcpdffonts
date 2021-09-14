@@ -1,0 +1,11 @@
+.tool_tcpdffonts-entity-actions a:not(:last-child) {
+    border-right: 1px solid #ddd;
+    padding: 0 0.5em;
+}
+.tool_tcpdffonts-entity-actions a:last-child {
+    margin-left: auto;
+}
+iframe.tool_tcpdffonts-preview {
+    width: 100%;
+    height: 100vh;
+}

@@ -1,0 +1,14 @@
+{{> tool_tcpdffonts/folderstate }}
+<div class="tool_tcpdffonts-entity-actions mt-3 mb-3">
+    <div class="d-flex flex-row flex-grow">
+        {{#actions.add.action}}{{{.}}}{{/actions.add.action}}
+        {{#actions.addzipped.action}}{{{.}}}{{/actions.addzipped.action}}
+        {{#actions.reset.action}}{{{.}}}{{/actions.reset.action}}
+        {{#actions.init.action}}{{{.}}}{{/actions.init.action}}
+        {{#actions.togglefamilyview.action}}{{{.}}}{{/actions.togglefamilyview.action}}
+    </div>
+</div>
+<div class="tool_tcpdffonts" data-region="tool_tcpdffonts-fonts-container">
+    {{! Fonts list view. Separate mustache because of inline replacing }}
+    {{> tool_tcpdffonts/fontlist}}
+</div>
