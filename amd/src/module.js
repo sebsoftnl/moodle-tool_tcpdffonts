@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+import * as Config from 'core/config';
+
 /**
  * Preview handler.
  *
@@ -36,7 +38,7 @@ const previewHandler = (e) => {
         style += 'i';
     }
 
-    let src = '/admin/tool/tcpdffonts/preview.php?action=previewfont&id=' + fontid;
+    let src = Config.wwwroot + '/admin/tool/tcpdffonts/preview.php?action=previewfont&id=' + fontid;
     src += '&sub=' + (subset ? 1 : 0);
     src += '&s=' + size;
     src += '&st=' + style;
