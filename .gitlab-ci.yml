@@ -11,7 +11,7 @@ variables:
   # If we want to ignore some templates, provide them here.
   #MUSTACHE_IGNORE_NAMES: "<file>.mustache, <file2>.mustache, ..., <filen>.mustache"
   PLUGIN: 'tool_tcpdffonts'
-  PATHNAME: 'tool/tcpdffonts'
+  PATHNAME: 'admin/tool/tcpdffonts'
   REPOURL: 'https://github.com/sebsoftnl/moodle-tool_tcpdffonts'
   REPOSYS: 'git'
   # Moodle auto format = 0, Markdown = 4, Flat txt = 2
