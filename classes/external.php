@@ -38,6 +38,7 @@ use external_function_parameters;
 use external_value;
 use external_single_structure;
 use context_system;
+use Exception;
 
 /**
  * External interface library for fonts
@@ -86,8 +87,8 @@ class external extends external_api {
      */
     public static function init_custom_fonts_returns() {
         return new external_single_structure([
-            'result' => new \external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new \external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
         ]);
     }
 
@@ -128,8 +129,8 @@ class external extends external_api {
      */
     public static function core_reset_returns() {
         return new external_single_structure([
-            'result' => new \external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new \external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
         ]);
     }
 
@@ -175,8 +176,8 @@ class external extends external_api {
      */
     public static function delete_font_returns() {
         return new external_single_structure([
-            'result' => new \external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new \external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
         ]);
     }
 
