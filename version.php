@@ -22,16 +22,17 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_tcpdffonts';
-$plugin->version  = 2021090103;
+$plugin->version  = 2024121900;
 $plugin->requires = 2019111800; // Moodle 3.8 and UP due to ES2015.
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = 'v0.0.4 (build2021090103)';
+$plugin->release = 'v1.0.0 (2024121900)';
+$plugin->supported = [402, 405];
 $plugin->dependencies = [];

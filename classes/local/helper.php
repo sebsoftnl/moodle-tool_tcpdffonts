@@ -22,8 +22,8 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -42,8 +42,8 @@ use moodle_exception;
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class helper {
@@ -188,7 +188,7 @@ class helper {
     public static function is_core_restricted_font($font) {
         // The standard files are a mandate from Moodle core!
         // See <libdir>/pdflib.php - function tcpdf_init_k_font_path.
-        $somestandardfiles = array('courier', 'helvetica', 'times', 'symbol', 'zapfdingbats', 'freeserif', 'freesans');
+        $somestandardfiles = ['courier', 'helvetica', 'times', 'symbol', 'zapfdingbats', 'freeserif', 'freesans'];
         if (in_array($font, $somestandardfiles)) {
             // Core REQUIRES these files when it determines it's own internal magic on the custom folder.
             // Actions on these fonts is therefore forbidden (aka: no delete).
@@ -609,8 +609,8 @@ class helper {
         }
         $fontname = strtolower($pathparts['filename']);
         $fontname = preg_replace('/[^a-z0-9_]/', '', $fontname);
-        $search = array('bold', 'oblique', 'italic', 'regular');
-        $replace = array('b', 'i', 'i', '');
+        $search = ['bold', 'oblique', 'italic', 'regular'];
+        $replace = ['b', 'i', 'i', ''];
         $fontname = str_replace($search, $replace, $fontname);
         if (empty($fontname)) {
             // Set generic name.

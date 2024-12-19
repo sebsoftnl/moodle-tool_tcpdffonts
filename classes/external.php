@@ -22,22 +22,18 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace tool_tcpdffonts;
 
-defined('MOODLE_INTERNAL') || die;
-
-require_once($CFG->libdir . "/externallib.php");
-
-use external_api;
-use external_function_parameters;
-use external_value;
-use external_single_structure;
-use context_system;
+use core_external\external_api;
+use core_external\external_function_parameters;
+use core_external\external_value;
+use core_external\external_single_structure;
+use core\context\system as context_system;
 use Exception;
 
 /**
@@ -45,8 +41,8 @@ use Exception;
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class external extends external_api {
@@ -88,7 +84,7 @@ class external extends external_api {
     public static function init_custom_fonts_returns() {
         return new external_single_structure([
             'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL),
         ]);
     }
 
@@ -130,7 +126,7 @@ class external extends external_api {
     public static function core_reset_returns() {
         return new external_single_structure([
             'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL),
         ]);
     }
 
@@ -144,7 +140,7 @@ class external extends external_api {
         // We always must pass webservice params through validate_parameters.
         $params = self::validate_parameters(
             self::delete_font_parameters(), [
-                'fontidentifier' => $fontidentifier
+                'fontidentifier' => $fontidentifier,
             ]
         );
 
@@ -167,7 +163,7 @@ class external extends external_api {
      */
     public static function delete_font_parameters() {
         return new external_function_parameters([
-            'fontidentifier' => new external_value(PARAM_ALPHANUMEXT, 'font identifier')
+            'fontidentifier' => new external_value(PARAM_ALPHANUMEXT, 'font identifier'),
         ]);
     }
 
@@ -177,7 +173,7 @@ class external extends external_api {
     public static function delete_font_returns() {
         return new external_single_structure([
             'result' => new external_value(PARAM_BOOL, 'True if successful, false otherwise'),
-            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL)
+            'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL),
         ]);
     }
 

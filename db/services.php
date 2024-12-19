@@ -22,37 +22,37 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$functions = array(
-    'tool_tcpdffonts_init_custom_fonts' => array(
+$functions = [
+    'tool_tcpdffonts_init_custom_fonts' => [
         'classname'   => '\tool_tcpdffonts\external',
         'methodname'  => 'init_custom_fonts',
         'description' => 'Initialize custom fonts, aka create custom fonts (CONTRIB) folder and copy over all from core.',
         'type'        => 'write',
         'loginrequired' => 1,
-        'ajax' => true
-    ),
-    'tool_tcpdffonts_core_reset' => array(
+        'ajax' => true,
+    ],
+    'tool_tcpdffonts_core_reset' => [
         'classname'   => '\tool_tcpdffonts\external',
         'methodname'  => 'core_reset',
         'description' => 'Reset custom fonts folder (aka delete it) so core can take over again.',
         'type'        => 'write',
         'loginrequired' => 1,
-        'ajax' => true
-    ),
-    'tool_tcpdffonts_delete_font' => array(
+        'ajax' => true,
+    ],
+    'tool_tcpdffonts_delete_font' => [
         'classname'   => '\tool_tcpdffonts\external',
         'methodname'  => 'delete_font',
         'description' => 'Delete a font.',
         'type'        => 'write',
         'loginrequired' => 1,
-        'ajax' => true
-    ),
+        'ajax' => true,
+    ],
 
-);
+];

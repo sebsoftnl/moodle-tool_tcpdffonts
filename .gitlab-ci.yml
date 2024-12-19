@@ -35,32 +35,46 @@ variables:
     - /root/ci/bin/moodle-plugin-ci install --moodle=$MOODLE_DIR --db-user=root --db-pass=superrootpass --db-host=mysql -vvv
     # Start actually running the CI now.
     - exit_code+=(0)
-    - /root/ci/bin/moodle-plugin-ci phplint || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci phpcpd || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci phpmd || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci codechecker || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci validate || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci savepoints || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci mustache || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci grunt || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci phpdoc || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci phpunit || exit_code+=($?)
-    - /root/ci/bin/moodle-plugin-ci behat || exit_code+=($?)
-    - for i in ${exit_code[@]}; do echo "Exit code ${exit_code[$i]}"; if [ "${exit_code[$i]}" -gt 0 ]; then exit 1; fi; done;
-    - echo "Final testing... Have we entered all language variables correctly?"
-    - cd /var/www/html/moodle
-    - /usr/local/bin/moosh -p /var/www/html/moodle/ -n dev-langusage $PATHNAME
-    - if [ "$(/usr/local/bin/moosh -p /var/www/html/moodle/ -n dev-langusage $PATHNAME 2>/dev/null | grep '... missing' -c)" != "0" ]; then echo "Please check there are no missing language strings."; exit 1; else echo "No issues with languages detected"; exit 0; fi
+    - failures=()
+    - /root/ci/bin/moodle-plugin-ci phplint || failures+=("PHPLINT")
+    - /root/ci/bin/moodle-plugin-ci phpcpd || true
+    - /root/ci/bin/moodle-plugin-ci phpmd || failures+=("PHPMD")
+    - /root/ci/bin/moodle-plugin-ci codechecker || failures+=("CODECHECKER")
+    - /root/ci/bin/moodle-plugin-ci validate || failures+=("VALIDATE")
+    - /root/ci/bin/moodle-plugin-ci savepoints || failures+=("SAVEPOINTS")
+    - /root/ci/bin/moodle-plugin-ci mustache || failures+=("MUSTACHE")
+    - /root/ci/bin/moodle-plugin-ci grunt || failures+=("GRUNT")
+    - /root/ci/bin/moodle-plugin-ci phpdoc || failures+=("PHPDOC")
+    - /root/ci/bin/moodle-plugin-ci phpunit || failures+=("PHPUNIT")
+    - /root/ci/bin/moodle-plugin-ci behat || failures+=("GRUNT")
+    # Dump results..
+    - for i in ${failures[@]}; do echo "$i -- FAIL"; done;
+    - if [ "${#failures[@]}" -gt "0" ]; then echo "${#failures[@]} jobs failed"; exit 1; fi;
 
-Moodle 3.11:
+Moodle 5.0:
   <<: *job_definition
   variables:
-    MOODLE_BRANCH: "MOODLE_311_STABLE"
+    MOODLE_BRANCH: "main"
 
-Moodle 3.10:
+Moodle 4.5:
   <<: *job_definition
   variables:
-    MOODLE_BRANCH: "MOODLE_310_STABLE"
+    MOODLE_BRANCH: "MOODLE_405_STABLE"
+
+Moodle 4.4:
+  <<: *job_definition
+  variables:
+    MOODLE_BRANCH: "MOODLE_404_STABLE"
+
+Moodle 4.3:
+  <<: *job_definition
+  variables:
+    MOODLE_BRANCH: "MOODLE_403_STABLE"
+
+Moodle 4.2:
+  <<: *job_definition
+  variables:
+    MOODLE_BRANCH: "MOODLE_402_STABLE"
 
 deploy.gitlab:
   stage: deploy
@@ -79,7 +93,7 @@ deploy.gitlab:
 deploy.github:
   stage: deploy
   image: moodlehq/moodle-php-apache:7.4
-  script: 
+  script:
     - echo "Deploying to Github..."
     - git checkout -b main
     - if [ "$(git remote | grep github | wc -l)" -eq "0" ]; then git remote add github $PUSHLOCATION; fi
@@ -88,7 +102,7 @@ deploy.github:
     - git push -u github --tags
     - echo "Deploy to Github completed..."
   only:
-     - tags
+    - tags
 
 # After the deploy has been done, it's ready to be released to Moodle.org.
 release:

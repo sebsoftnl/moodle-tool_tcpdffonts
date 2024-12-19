@@ -22,8 +22,8 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 
@@ -38,8 +38,8 @@ require_once($CFG->libdir . '/formslib.php');
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 class upload extends \moodleform {
@@ -55,7 +55,7 @@ class upload extends \moodleform {
 
         $options = [
             'maxbytes' => 0,
-            'accepted_types' => $this->_customdata['types']
+            'accepted_types' => $this->_customdata['types'],
         ];
         $mform->addElement('filepicker', 'userfile', get_string('fontfile', 'tool_tcpdffonts'), null, $options);
         $mform->setType('confirm', PARAM_BOOL);
@@ -73,7 +73,7 @@ class upload extends \moodleform {
         // Font flags setting.
         $flagoptions = [
             4 => get_string('nonsymbolfont', 'tool_tcpdffonts'),
-            32 => get_string('symbolfont', 'tool_tcpdffonts')
+            32 => get_string('symbolfont', 'tool_tcpdffonts'),
         ];
         $mform->addElement('select', 'flags', get_string('fontflags', 'tool_tcpdffonts'), $flagoptions);
         $mform->addHelpButton('flags', 'fontflags', 'tool_tcpdffonts');
@@ -81,7 +81,7 @@ class upload extends \moodleform {
         // Font platform ID setting.
         $platformsettings = [
             1 => 'Macintosh',
-            3 => 'Windows'
+            3 => 'Windows',
         ];
         $mform->addElement('select', 'platid', get_string('fontplatid', 'tool_tcpdffonts'), $platformsettings);
         $mform->addHelpButton('platid', 'fontplatid', 'tool_tcpdffonts');
@@ -99,7 +99,7 @@ class upload extends \moodleform {
             7 => 'Reserved',
             8 => 'Reserved',
             9 => 'Reserved',
-            10 => 'UCS-4'
+            10 => 'UCS-4',
         ];
         $mform->addElement('select', 'encid', get_string('fontencid', 'tool_tcpdffonts'), $encidsettings);
         $mform->addHelpButton('encid', 'fontencid', 'tool_tcpdffonts');

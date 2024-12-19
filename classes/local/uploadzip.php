@@ -22,8 +22,8 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 
@@ -38,8 +38,8 @@ require_once($CFG->libdir . '/formslib.php');
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 class uploadzip extends \moodleform {
@@ -55,7 +55,7 @@ class uploadzip extends \moodleform {
 
         $options = [
             'maxbytes' => 0,
-            'accepted_types' => $this->_customdata['types']
+            'accepted_types' => $this->_customdata['types'],
         ];
         $mform->addElement('filepicker', 'userfile', get_string('fontfile', 'tool_tcpdffonts'), null, $options);
         $mform->setType('confirm', PARAM_BOOL);

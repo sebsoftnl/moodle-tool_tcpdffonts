@@ -22,14 +22,12 @@
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace tool_tcpdffonts\output\component;
-
-defined('MOODLE_INTERNAL') or die('NO_ACCESS');
 
 use renderable;
 use templatable;
@@ -41,8 +39,8 @@ use pix_icon;
  *
  * @package     tool_tcpdffonts
  *
- * @copyright   2021 Ing. R.J. van Dongen
- * @author      Ing. R.J. van Dongen <rogier@sebsoft.nl>
+ * @copyright   2021 RvD
+ * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class previewfont implements renderable, templatable {
@@ -110,17 +108,17 @@ class previewfont implements renderable, templatable {
             'data-font' => $this->instance,
             'data-isfamily' => $this->instanceisfontfamily ? 1 : 0,
             'data-contextid' => $context->id,
-            'class' => 'action-icon action-icon-hide'
+            'class' => 'action-icon action-icon-hide',
         ];
         return (object) [
             'action' => $output->action_icon(
-                    new moodle_url($this->baseurl, array('action' => 'preview',
-                        'id' => $this->instance, 'isfamily' => $this->instanceisfontfamily ? 1 : 0)),
+                    new moodle_url($this->baseurl, ['action' => 'preview',
+                        'id' => $this->instance, 'isfamily' => $this->instanceisfontfamily ? 1 : 0]),
                     new pix_icon('t/preview', $this->actionstring, 'moodle', ['class' => 'icon']),
                     null,
                     ['alt' => $this->actionstring] + $dataactionattributes,
                     $this->linktext
-                )
+                ),
         ];
     }
 
