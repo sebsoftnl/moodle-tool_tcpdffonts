@@ -44,28 +44,28 @@
 
 <div>
     <form id="tool_tcpdffonts-preview-form" data-fontid="{{fontid}}">
-        <input type="hidden" name="sub" value="0"/>
+        <input type="hidden" name="sub" value="0">
         <div class="d-flex flex-row">
             <div class="flex-md-fill">
-                <label><input type="checkbox" id="id_subset" name="sub" value="1"/>&nbsp;{{#str}}toggle:subset, tool_tcpdffonts{{/str}}</label>
+                <label><input type="checkbox" id="id_subset" name="sub" value="1">&nbsp;{{#str}}toggle:subset, tool_tcpdffonts{{/str}}</label>
             </div>
             <div class="flex-md-fill">
-                <label><input type="checkbox" id="id_bold" name="bold"/>&nbsp;{{#str}}bold, tool_tcpdffonts{{/str}}</label>
+                <label><input type="checkbox" id="id_bold" name="bold">&nbsp;{{#str}}bold, tool_tcpdffonts{{/str}}</label>
             </div>
             <div class="flex-md-fill">
-                <label><input type="checkbox" id="id_italic" name="italic"/>&nbsp;{{#str}}italic, tool_tcpdffonts{{/str}}</label>
+                <label><input type="checkbox" id="id_italic" name="italic">&nbsp;{{#str}}italic, tool_tcpdffonts{{/str}}</label>
             </div>
         </div>
         <div class="d-flex flex-row">
             <div class="flex-md-fill">
-                <label>{{#str}}size, tool_tcpdffonts{{/str}}</label>&nbsp;<input type="number" id="id_size" name="size" value="{{size}}"/>
+                <label>{{#str}}size, tool_tcpdffonts{{/str}}</label>&nbsp;<input type="number" id="id_size" name="size" value="{{size}}">
             </div>
         </div>
         <div class="d-flex flex-row">
             <label>{{#str}}previewtext, tool_tcpdffonts{{/str}}</label>
             <textarea name="txt" id="id_txt" style="width: 100%; min-height: 150px;">{{previewtext}}</textarea>
         </div>
-        <input type="submit" name="submit" value="{{labelsubmit}}"/>
+        <input type="submit" name="submit" value="{{labelsubmit}}">
     </form>
 </div>
 <iframe id="framepreview" class="tool_tcpdffonts-preview" src="{{frameurl}}"></iframe>

@@ -159,7 +159,7 @@ class controller {
         helper::add_mimetypes_for_upload();
         $uploadform = new \tool_tcpdffonts\local\upload($this->get_url([
             'action' => 'addfont',
-        ], ['types' => ['.ttf', '.otf']]));
+        ]), ['types' => ['.ttf', '.otf']]);
 
         if ($uploadform->is_cancelled()) {
             redirect($this->get_url());

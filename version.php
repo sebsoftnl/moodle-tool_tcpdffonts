@@ -30,9 +30,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_tcpdffonts';
-$plugin->version  = 2024121900;
+$plugin->version  = 2025120100;
 $plugin->requires = 2019111800; // Moodle 3.8 and UP due to ES2015.
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = 'v1.0.0 (2024121900)';
+$plugin->release = 'v1.0.1 (2025120100)';
 $plugin->supported = [402, 405];
 $plugin->dependencies = [];
