@@ -44,7 +44,6 @@ use pix_icon;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class togglefamilyview implements renderable, templatable {
-
     /**
      * Base url
      *
@@ -96,14 +95,13 @@ class togglefamilyview implements renderable, templatable {
         $icon = $this->familyview ? 'i/group' : 'i/user';
         return (object) [
             'action' => $output->action_link(
-                    new moodle_url($this->baseurl, ['action' => 'togglefamilyview',
-                        'value' => $this->familyview ? 0 : 1]),
-                    $this->actionstring,
-                    null,
-                    ['alt' => $this->actionstring] + $dataactionattributes,
-                    new pix_icon($icon, $this->actionstring, 'moodle', ['class' => 'icon'])
-                ),
+                new moodle_url($this->baseurl, ['action' => 'togglefamilyview',
+                    'value' => $this->familyview ? 0 : 1]),
+                $this->actionstring,
+                null,
+                ['alt' => $this->actionstring] + $dataactionattributes,
+                new pix_icon($icon, $this->actionstring, 'moodle', ['class' => 'icon'])
+            ),
         ];
     }
-
 }

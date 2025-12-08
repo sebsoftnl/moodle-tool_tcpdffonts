@@ -39,7 +39,6 @@ namespace tool_tcpdffonts\event;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class font_created extends base {
-
     /**
      * Generic event name (used when generating locale-aware name)
      */
@@ -58,5 +57,4 @@ class font_created extends base {
         $this->data['edulevel'] = self::LEVEL_OTHER;
         $this->context = \context_system::instance();
     }
-
 }

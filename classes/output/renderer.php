@@ -39,7 +39,6 @@ namespace tool_tcpdffonts\output;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class renderer extends \plugin_renderer_base {
-
     /**
      * Create a tab object with a nice image view, instead of just a regular tabobject
      *
@@ -52,8 +51,15 @@ class renderer extends \plugin_renderer_base {
      * @param bool $linkedwhenselected whether to display a link under the tab name when it's selected
      * @return \tabobject
      */
-    protected function create_pictab($id, $pix = null, $component = null, $link = null,
-            $text = '', $title = '', $linkedwhenselected = false) {
+    protected function create_pictab(
+        $id,
+        $pix = null,
+        $component = null,
+        $link = null,
+        $text = '',
+        $title = '',
+        $linkedwhenselected = false
+    ) {
         $img = '';
         if (!empty($pix)) {
             $img = $this->pix_icon($pix, $title, $component, $attributes = null);
@@ -75,46 +81,93 @@ class renderer extends \plugin_renderer_base {
 
         $active1 = $active2 = null;
         if (strpos($active, '-') !== false) {
-            list($active1, $active2) = explode('-', $active);
+            [$active1, $active2] = explode('-', $active);
         } else {
             $active1 = $active;
         }
 
-        $dashboardtab = $this->create_pictab('tcpdffonts', '', null,
-                new \moodle_url($CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php', $params),
-                get_string('pluginname', 'tool_tcpdffonts'), '', true);
+        $dashboardtab = $this->create_pictab(
+            'tcpdffonts',
+            '',
+            null,
+            new \moodle_url($CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php', $params),
+            get_string('pluginname', 'tool_tcpdffonts'),
+            '',
+            true
+        );
         if ($active1 == 'tcpdffonts' && !empty($active2)) {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts', 'i/up', null,
-                    new \moodle_url($CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php', $params),
-                    get_string('backtolist', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts',
+                'i/up',
+                null,
+                new \moodle_url($CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php', $params),
+                get_string('backtolist', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         if ($active1 == 'tcpdffonts' && $active2 === 'deletefont') {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts-deletefont', 'i/delete', null,
-                    new \moodle_url($CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php',
-                            $params + ['action' => 'delete']),
-                    get_string('font:delete', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts-deletefont',
+                'i/delete',
+                null,
+                new \moodle_url(
+                    $CFG->wwwroot . '/' . $CFG->admin . '/tool/tcpdffonts/index.php',
+                    $params + ['action' => 'delete']
+                ),
+                get_string('font:delete', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         if ($active1 == 'tcpdffonts' && $active2 === 'add') {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts-add', 't/add', null,
-                    null, get_string('font:add', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts-add',
+                't/add',
+                null,
+                null,
+                get_string('font:add', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         if ($active1 == 'tcpdffonts' && $active2 === 'reset') {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts-reset', 'i/settings', null,
-                    null, get_string('action:resetcorefonts', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts-reset',
+                'i/settings',
+                null,
+                null,
+                get_string('action:resetcorefonts', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         if ($active1 == 'tcpdffonts' && $active2 === 'init') {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts-init', 'i/settings', null,
-                    null, get_string('action:initcustomfonts', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts-init',
+                'i/settings',
+                null,
+                null,
+                get_string('action:initcustomfonts', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         if ($active1 == 'tcpdffonts' && $active2 === 'preview') {
-            $dashboardtab->subtree[] = $this->create_pictab('tcpdffonts-preview', 'i/preview', null,
-                    null, get_string('action:font:preview', 'tool_tcpdffonts'), '', true);
+            $dashboardtab->subtree[] = $this->create_pictab(
+                'tcpdffonts-preview',
+                'i/preview',
+                null,
+                null,
+                get_string('action:font:preview', 'tool_tcpdffonts'),
+                '',
+                true
+            );
         }
         $tabs[] = $dashboardtab;
 
         return $this->tabtree($tabs, $active, $inactive);
     }
-
 
     /**
      * Fetch rendered font list
@@ -138,5 +191,4 @@ class renderer extends \plugin_renderer_base {
         $context = $widget->export_for_template($this);
         return $this->render_from_template('tool_tcpdffonts/fonts', $context);
     }
-
 }

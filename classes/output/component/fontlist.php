@@ -45,8 +45,7 @@ use tool_tcpdffonts\local\helper;
  * @author      RvD <helpdesk@sebsoft.nl>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class fontlist implements \templatable, \renderable {
-
+class fontlist implements \renderable, \templatable {
     /**
      * Base url
      *
@@ -78,7 +77,7 @@ class fontlist implements \templatable, \renderable {
      * @return stdClass
      */
     public function export_for_template(\renderer_base $output) {
-        $rs = new stdClass;
+        $rs = new stdClass();
 
         $rs->locationcustomized = false;
         $rs->groupedbyfamily = $this->groupbyfamily;
@@ -156,5 +155,4 @@ class fontlist implements \templatable, \renderable {
 
         return $rs;
     }
-
 }

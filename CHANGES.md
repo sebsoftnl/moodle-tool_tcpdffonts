@@ -1,5 +1,6 @@
 Version 1.0.1 (build 2025120100)
 * Fixed #4
+* Make CI happier
 
 -----
 Version 1.0.0 (build 2024121900)

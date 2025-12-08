@@ -46,7 +46,6 @@ use Exception;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class external extends external_api {
-
     /**
      * Initialize custom fonts.
      * This initializes the standard fonts (CONTRIB) folder to your moodle data folder
@@ -56,9 +55,7 @@ class external extends external_api {
      */
     public static function init_custom_fonts() {
         // We always must pass webservice params through validate_parameters.
-        self::validate_parameters(
-            self::init_custom_fonts_parameters(), []
-        );
+        self::validate_parameters(self::init_custom_fonts_parameters(), []);
 
         $context = context_system::instance();
         self::validate_context($context);
@@ -96,9 +93,7 @@ class external extends external_api {
      */
     public static function core_reset() {
         // We always must pass webservice params through validate_parameters.
-        self::validate_parameters(
-            self::core_reset_parameters(), []
-        );
+        self::validate_parameters(self::core_reset_parameters(), []);
 
         $context = context_system::instance();
         self::validate_context($context);
@@ -139,9 +134,8 @@ class external extends external_api {
     public static function delete_font($fontidentifier) {
         // We always must pass webservice params through validate_parameters.
         $params = self::validate_parameters(
-            self::delete_font_parameters(), [
-                'fontidentifier' => $fontidentifier,
-            ]
+            self::delete_font_parameters(),
+            ['fontidentifier' => $fontidentifier]
         );
 
         $context = context_system::instance();
@@ -176,5 +170,4 @@ class external extends external_api {
             'error' => new external_value(PARAM_RAW, 'Error message if any', VALUE_OPTIONAL),
         ]);
     }
-
 }

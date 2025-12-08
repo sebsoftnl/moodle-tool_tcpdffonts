@@ -45,7 +45,6 @@ use context_system;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class controller {
-
     /**
      * @var \moodle_page
      */
@@ -192,9 +191,15 @@ class controller {
                 }
 
                 // Process font.
-                $fontname = helper::process_font_file($fullpath, $data->fonttype,
-                        $data->enc, (int)$data->flags, (int)$data->platid, (int)$data->encid,
-                        (bool)$data->addcbbox);
+                $fontname = helper::process_font_file(
+                    $fullpath,
+                    $data->fonttype,
+                    $data->enc,
+                    (int)$data->flags,
+                    (int)$data->platid,
+                    (int)$data->encid,
+                    (bool)$data->addcbbox
+                );
                 $success = $success && !empty($fontname);
                 // Notify user.
                 if ($success) {
@@ -250,10 +255,9 @@ class controller {
                         \core\notification::warning(get_string('font:addfont:fail', 'tool_tcpdffonts', $xfontid));
                     } else if (!empty($result->errors)) {
                         \core\notification::error(get_string('font:addfont:fail', 'tool_tcpdffonts', $xfontid) . '<br/>'
-                                .implode('<br/>', $result->errors));
+                                . implode('<br/>', $result->errors));
                     } else {
                         \core\notification::success(get_string('font:addfont:success', 'tool_tcpdffonts', $xfontid));
-
                     }
                 }
             }
@@ -309,7 +313,7 @@ class controller {
         helper::load_font_info($finfo, $fontfile, $fontid);
 
         // Write and output.
-        $text = '<h1>'.get_string('previewfor', 'tool_tcpdffonts', $finfo[$fontid]['name']).'</h1>';
+        $text = '<h1>' . get_string('previewfor', 'tool_tcpdffonts', $finfo[$fontid]['name']) . '</h1>';
         $text .= $previewtext;
         $pdf->writeHTML($text, true);
 
@@ -373,7 +377,6 @@ class controller {
             ];
             $successmessage = get_string('font:family:delete:success', 'tool_tcpdffonts', implode(', ', $fontidlist));
             $failmessage = get_string('font:family:delete:fail', 'tool_tcpdffonts', implode(', ', $fontidlist));
-
         } else {
             $fontidlist = [$fontid];
             $customdata = [
@@ -489,5 +492,4 @@ class controller {
         echo $confirmationform->render();
         echo $this->renderer->footer();
     }
-
 }

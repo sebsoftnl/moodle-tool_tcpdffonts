@@ -47,7 +47,6 @@ use moodle_exception;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class helper {
-
     /**
      * Assert or throw
      *
@@ -415,8 +414,15 @@ class helper {
      *
      * @return string|null null on error, added font name on success
      */
-    public static function process_font_file($fontfile, $fonttype = '', $enc = '',
-            $flags = 32, $platid = 3, $encid = 1, $addcbbox = false) {
+    public static function process_font_file(
+        $fontfile,
+        $fonttype = '',
+        $enc = '',
+        $flags = 32,
+        $platid = 3,
+        $encid = 1,
+        $addcbbox = false
+    ) {
         global $CFG;
         require_once($CFG->libdir . '/tcpdf/include/tcpdf_fonts.php');
 
@@ -659,12 +665,12 @@ class helper {
 
         // Create filter callback.
         $cbkey = $isfamily ? 'family' : 'fontname';
-        $callable = function($font) use ($cbkey, $fontid) {
+        $callable = function ($font) use ($cbkey, $fontid) {
             return $font[$cbkey] == $fontid;
         };
 
         // Create archive, loop using filter and add files.
-        list($archive, $zipname) = static::open_zip_for_export($fontid);
+        [$archive, $zipname] = static::open_zip_for_export($fontid);
         $iterator = new \CallbackFilterIterator(new \ArrayIterator($finfo), $callable);
         foreach ($iterator as $font) {
             // Add main file.
@@ -693,5 +699,4 @@ class helper {
         readfile($zipname);
         @unlink($zipname);
     }
-
 }

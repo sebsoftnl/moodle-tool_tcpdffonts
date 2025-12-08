@@ -44,7 +44,6 @@ use pix_icon;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class resetcorefonts implements renderable, templatable {
-
     /**
      * Base url
      *
@@ -88,13 +87,12 @@ class resetcorefonts implements renderable, templatable {
         ];
         return (object) [
             'action' => $output->action_link(
-                    new moodle_url($this->baseurl, ['action' => 'resetcorefonts']),
-                    $this->actionstring,
-                    null,
-                    ['alt' => $this->actionstring] + $dataactionattributes,
-                    new pix_icon('t/edit', $this->actionstring, 'moodle', ['class' => 'icon'])
-                ),
+                new moodle_url($this->baseurl, ['action' => 'resetcorefonts']),
+                $this->actionstring,
+                null,
+                ['alt' => $this->actionstring] + $dataactionattributes,
+                new pix_icon('t/edit', $this->actionstring, 'moodle', ['class' => 'icon'])
+            ),
         ];
     }
-
 }

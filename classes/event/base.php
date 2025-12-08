@@ -39,7 +39,6 @@ namespace tool_tcpdffonts\event;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 abstract class base extends \core\event\base {
-
     /**
      * Generic event name (used when generating locale-aware name)
      */
@@ -74,7 +73,8 @@ abstract class base extends \core\event\base {
      * @return string
      */
     public function get_description() {
-        return "The font with name '{$this->other['fontname']}' was ".static::EVT_ACTION." by the user with id '$this->userid'.";
+        return "The font with name '{$this->other['fontname']}' was " .
+                static::EVT_ACTION . " by the user with id '{$this->userid}'.";
     }
 
     /**
@@ -118,5 +118,4 @@ abstract class base extends \core\event\base {
         $self = static::create_from_font($fontname);
         $self->trigger();
     }
-
 }

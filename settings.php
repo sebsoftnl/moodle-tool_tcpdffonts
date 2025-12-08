@@ -31,8 +31,8 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($hassiteconfig) {
     $ADMIN->add('server', new admin_externalpage(
-            'tooltcpdffonts',
-            get_string('pluginname', 'tool_tcpdffonts'),
-            "$CFG->wwwroot/$CFG->admin/tool/tcpdffonts/index.php"
-        ));
+        'tooltcpdffonts',
+        get_string('pluginname', 'tool_tcpdffonts'),
+        "$CFG->wwwroot/$CFG->admin/tool/tcpdffonts/index.php"
+    ));
 }

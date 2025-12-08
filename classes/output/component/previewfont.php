@@ -44,7 +44,6 @@ use pix_icon;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class previewfont implements renderable, templatable {
-
     /**
      * Base url
      *
@@ -112,14 +111,13 @@ class previewfont implements renderable, templatable {
         ];
         return (object) [
             'action' => $output->action_icon(
-                    new moodle_url($this->baseurl, ['action' => 'preview',
-                        'id' => $this->instance, 'isfamily' => $this->instanceisfontfamily ? 1 : 0]),
-                    new pix_icon('t/preview', $this->actionstring, 'moodle', ['class' => 'icon']),
-                    null,
-                    ['alt' => $this->actionstring] + $dataactionattributes,
-                    $this->linktext
-                ),
+                new moodle_url($this->baseurl, ['action' => 'preview',
+                    'id' => $this->instance, 'isfamily' => $this->instanceisfontfamily ? 1 : 0]),
+                new pix_icon('t/preview', $this->actionstring, 'moodle', ['class' => 'icon']),
+                null,
+                ['alt' => $this->actionstring] + $dataactionattributes,
+                $this->linktext
+            ),
         ];
     }
-
 }

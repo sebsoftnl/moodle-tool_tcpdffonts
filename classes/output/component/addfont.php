@@ -44,7 +44,6 @@ use pix_icon;
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class addfont implements renderable, templatable {
-
     /**
      * Base url
      *
@@ -104,24 +103,23 @@ class addfont implements renderable, templatable {
         if ($this->renderasicon) {
             return (object) [
                 'action' => $output->action_icon(
-                        new moodle_url($this->baseurl, ['action' => 'addfont']),
-                        new pix_icon('t/add', $this->actionstring, 'moodle', ['class' => 'icon']),
-                        null,
-                        ['alt' => $this->actionstring] + $dataactionattributes,
-                        $this->linktext
-                    ),
+                    new moodle_url($this->baseurl, ['action' => 'addfont']),
+                    new pix_icon('t/add', $this->actionstring, 'moodle', ['class' => 'icon']),
+                    null,
+                    ['alt' => $this->actionstring] + $dataactionattributes,
+                    $this->linktext
+                ),
             ];
         } else {
             return (object) [
                 'action' => $output->action_link(
-                        new moodle_url($this->baseurl, ['action' => 'addfont']),
-                        $this->actionstring,
-                        null,
-                        ['alt' => $this->actionstring] + $dataactionattributes,
-                        new pix_icon('t/add', $this->actionstring, 'moodle', ['class' => 'icon'])
-                    ),
+                    new moodle_url($this->baseurl, ['action' => 'addfont']),
+                    $this->actionstring,
+                    null,
+                    ['alt' => $this->actionstring] + $dataactionattributes,
+                    new pix_icon('t/add', $this->actionstring, 'moodle', ['class' => 'icon'])
+                ),
             ];
         }
     }
-
 }
