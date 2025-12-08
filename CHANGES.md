@@ -1,3 +1,7 @@
+Version 1.0.1 (build 2025120101)
+* Support up to Moodle 5.2+
+
+-----
 Version 1.0.1 (build 2025120100)
 * Fixed #4
 * Make CI happier
